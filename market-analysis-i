@@ -1,0 +1,15 @@
+/* https://leetcode.com/problems/market-analysis-i/ */ 
+
+select Users.user_id as 'buyer_id', Users.join_date, COALESCE(t1.orders_in_2019,0) as 'orders_in_2019'
+from
+Users
+
+left join
+
+(Select Orders.buyer_id, count(Orders.order_id) as 'orders_in_2019'
+From 
+Orders
+where YEAR(Orders.order_date) = 2019
+group by Orders.buyer_id) t1
+
+on Users.user_id = t1.buyer_id
