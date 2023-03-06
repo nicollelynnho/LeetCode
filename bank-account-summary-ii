@@ -1,0 +1,10 @@
+/* https://leetcode.com/problems/bank-account-summary-ii
+
+Select Users.name, sum(Transactions.amount) as 'balance'
+FROM 
+Transactions
+join
+Users
+on Transactions.account = Users.account
+group by Users.name
+having sum(Transactions.amount) > 10000
